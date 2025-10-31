@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懿曲折扇情导航</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MetingJS 音乐播放器 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+</head>
+<body>
+    <div id="dynamicBackground"></div>
+    <!-- 宠物猫 -->
+    <div id="petCat" class="pet-cat">
+        <div class="cat-body">
+            <div class="cat-head">
+                <div class="cat-ear left-ear"></div>
+                <div class="cat-ear right-ear"></div>
+                <div class="cat-face">
+                    <div class="cat-eye left-eye">
+                        <div class="cat-pupil"></div>
+                    </div>
+                    <div class="cat-eye right-eye">
+                        <div class="cat-pupil"></div>
+                    </div>
+                    <div class="cat-nose"></div>
+                    <div class="cat-mouth"></div>
+                </div>
+            </div>
+            <div class="cat-tail"></div>
+        </div>
+    </div>
+    <!-- 音乐播放器 -->
+    <div id="musicPlayer" class="music-player">
+        <div class="music-player-header">
+            <div class="music-info">
+                <span class="music-icon">🎵</span>
+                <span class="music-title" id="musicTitle">网易云音乐</span>
+            </div>
+            <div class="music-controls">
+                <button id="musicToggle" class="music-toggle" title="播放/暂停">
+                    <span id="toggleIcon">▶️</span>
+                </button>
+                <button id="musicMinimize" class="music-minimize" title="最小化">
+                    <span>−</span>
+                </button>
+            </div>
+        </div>
+        <div class="music-player-body" id="musicPlayerBody">
+            <meting-js
+                server="netease"
+                type="playlist"
+                id="3778678"
+                fixed="false"
+                autoplay="true"
+                loop="all"
+                order="list"
+                volume="0.7"
+                theme="#667eea"
+                mini="false"
+                lrc-type="0">
+            </meting-js>
+        </div>
+    </div>
+    <button id="musicFloatBtn" class="music-float-btn" title="打开音乐播放器">
+        <span>🎵</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>🔗 懿曲折扇情导航</h1>
+                    <!-- <p>快速访问常用网站</p> -->
+                </div>
+                <button id="themeToggle" class="theme-toggle" title="切换主题">
+                    <span class="theme-icon" id="themeIcon">🌙</span>
+                    <span class="theme-text" id="themeText">夜间模式</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="search-box">
+            <div class="search-container">
+                <div class="search-engine-selector">
+                    <button id="searchEngineBtn" class="engine-btn" data-engine="site">
+                        <span id="engineIcon">🔍</span>
+                        <span id="engineText">站内</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div id="searchEngineMenu" class="engine-menu">
+                        <div class="engine-option active" data-engine="site" data-icon="🔍">
+                            <span class="option-icon">🔍</span>
+                            <span class="option-text">站内搜索</span>
+                        </div>
+                        <div class="engine-option" data-engine="baidu" data-icon="B">
+                            <span class="option-icon">B</span>
+                            <span class="option-text">百度</span>
+                        </div>
+                        <div class="engine-option" data-engine="google" data-icon="G">
+                            <span class="option-icon">G</span>
+                            <span class="option-text">Google</span>
+                        </div>
+                        <div class="engine-option" data-engine="bing" data-icon="B">
+                            <span class="option-icon">B</span>
+                            <span class="option-text">Bing</span>
+                        </div>
+                        <div class="engine-option" data-engine="sogou" data-icon="搜">
+                            <span class="option-icon">搜</span>
+                            <span class="option-text">搜狗</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="searchInput" placeholder="搜索网站或输入关键词搜索...">
+                <button id="searchBtn" class="search-btn">
+                    <span>🔍</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-wrapper">
+            <main>
+                <div class="category" data-category="搜索引擎">
+                <h2>🔍 搜索引擎</h2>
+                <div class="links-grid">
+                    <a href="https://www.baidu.com" target="_blank" class="link-card" data-name="百度">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">百度</div>
+                    </a>
+                    <a href="https://www.google.com" target="_blank" class="link-card" data-name="Google">
+                        <div class="link-icon">🌐</div>
+                        <div class="link-name">Google</div>
+                    </a>
+                    <a href="https://www.bing.com" target="_blank" class="link-card" data-name="Bing">
+                        <div class="link-icon">🔎</div>
+                        <div class="link-name">Bing</div>
+                    </a>
+                    <a href="https://www.sogou.com" target="_blank" class="link-card" data-name="搜狗">
+                        <div class="link-icon">🔎</div>
+                        <div class="link-name">搜狗</div>
+                    </a>
+                    <a href="https://www.so.com" target="_blank" class="link-card" data-name="360搜索">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">360搜索</div>
+                    </a>
+                    <a href="https://yandex.com" target="_blank" class="link-card" data-name="Yandex">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">Yandex</div>
+                    </a>
+                    <a href="https://www.duckduckgo.com" target="_blank" class="link-card" data-name="DuckDuckGo">
+                        <div class="link-icon">🦆</div>
+                        <div class="link-name">DuckDuckGo</div>
+                    </a>
+                    <a href="https://www.yahoo.com" target="_blank" class="link-card" data-name="Yahoo">
+                        <div class="link-icon">🌐</div>
+                        <div class="link-name">Yahoo</div>
+                    </a>
+                    <a href="https://m.sm.cn" target="_blank" class="link-card" data-name="神马搜索">
+                        <div class="link-icon">🐎</div>
+                        <div class="link-name">神马搜索</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="社交媒体">
+                <h2>📱 社交媒体</h2>
+                <div class="links-grid">
+                    <a href="https://www.weibo.com" target="_blank" class="link-card" data-name="微博">
+                        <div class="link-icon">📲</div>
+                        <div class="link-name">微博</div>
+                    </a>
+                    <a href="https://www.zhihu.com" target="_blank" class="link-card" data-name="知乎">
+                        <div class="link-icon">💭</div>
+                        <div class="link-name">知乎</div>
+                    </a>
+                    <a href="https://www.douyin.com" target="_blank" class="link-card" data-name="抖音">
+                        <div class="link-icon">🎵</div>
+                        <div class="link-name">抖音</div>
+                    </a>
+                    <a href="https://www.xiaohongshu.com" target="_blank" class="link-card" data-name="小红书">
+                        <div class="link-icon">📕</div>
+                        <div class="link-name">小红书</div>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="link-card" data-name="Instagram">
+                        <div class="link-icon">📷</div>
+                        <div class="link-name">Instagram</div>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="link-card" data-name="Facebook">
+                        <div class="link-icon">👥</div>
+                        <div class="link-name">Facebook</div>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="link-card" data-name="Twitter">
+                        <div class="link-icon">🐦</div>
+                        <div class="link-name">Twitter</div>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="link-card" data-name="LinkedIn">
+                        <div class="link-icon">💼</div>
+                        <div class="link-name">LinkedIn</div>
+                    </a>
+                    <a href="https://www.reddit.com" target="_blank" class="link-card" data-name="Reddit">
+                        <div class="link-icon">🤖</div>
+                        <div class="link-name">Reddit</div>
+                    </a>
+                    <a href="https://www.douban.com" target="_blank" class="link-card" data-name="豆瓣">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">豆瓣</div>
+                    </a>
+                    <a href="https://www.tiktok.com" target="_blank" class="link-card" data-name="TikTok">
+                        <div class="link-icon">🎬</div>
+                        <div class="link-name">TikTok</div>
+                    </a>
+                    <a href="https://www.bilibili.com" target="_blank" class="link-card" data-name="B站">
+                        <div class="link-icon">📺</div>
+                        <div class="link-name">B站</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="技术开发">
+                <h2>💻 技术开发</h2>
+                <div class="links-grid">
+                    <a href="https://github.com" target="_blank" class="link-card" data-name="GitHub">
+                        <div class="link-icon">💻</div>
+                        <div class="link-name">GitHub</div>
+                    </a>
+                    <a href="https://stackoverflow.com" target="_blank" class="link-card" data-name="Stack Overflow">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">Stack Overflow</div>
+                    </a>
+                    <a href="https://developer.mozilla.org" target="_blank" class="link-card" data-name="MDN">
+                        <div class="link-icon">📖</div>
+                        <div class="link-name">MDN</div>
+                    </a>
+                    <a href="https://www.npmjs.com" target="_blank" class="link-card" data-name="npm">
+                        <div class="link-icon">📦</div>
+                        <div class="link-name">npm</div>
+                    </a>
+                    <a href="https://gitlab.com" target="_blank" class="link-card" data-name="GitLab">
+                        <div class="link-icon">🔷</div>
+                        <div class="link-name">GitLab</div>
+                    </a>
+                    <a href="https://gitee.com" target="_blank" class="link-card" data-name="Gitee">
+                        <div class="link-icon">⭐</div>
+                        <div class="link-name">Gitee</div>
+                    </a>
+                    <a href="https://www.docker.com" target="_blank" class="link-card" data-name="Docker">
+                        <div class="link-icon">🐳</div>
+                        <div class="link-name">Docker</div>
+                    </a>
+                    <a href="https://kubernetes.io" target="_blank" class="link-card" data-name="Kubernetes">
+                        <div class="link-icon">⚓</div>
+                        <div class="link-name">Kubernetes</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="程序员工具">
+                <h2>🛠️ 程序员工具</h2>
+                <div class="links-grid">
+                    <a href="https://www.codecademy.com" target="_blank" class="link-card" data-name="Codecademy">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">Codecademy</div>
+                    </a>
+                    <a href="https://leetcode.cn" target="_blank" class="link-card" data-name="LeetCode">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">LeetCode</div>
+                    </a>
+                    <a href="https://www.codewars.com" target="_blank" class="link-card" data-name="Codewars">
+                        <div class="link-icon">⚔️</div>
+                        <div class="link-name">Codewars</div>
+                    </a>
+                    <a href="https://www.jetbrains.com" target="_blank" class="link-card" data-name="JetBrains">
+                        <div class="link-icon">🔧</div>
+                        <div class="link-name">JetBrains</div>
+                    </a>
+                    <a href="https://www.vscode.dev" target="_blank" class="link-card" data-name="VS Code">
+                        <div class="link-icon">💻</div>
+                        <div class="link-name">VS Code</div>
+                    </a>
+                    <a href="https://github.com/features/copilot" target="_blank" class="link-card" data-name="GitHub Copilot">
+                        <div class="link-icon">🤖</div>
+                        <div class="link-name">GitHub Copilot</div>
+                    </a>
+                    <a href="https://www.postman.com" target="_blank" class="link-card" data-name="Postman">
+                        <div class="link-icon">📮</div>
+                        <div class="link-name">Postman</div>
+                    </a>
+                    <a href="https://swagger.io" target="_blank" class="link-card" data-name="Swagger">
+                        <div class="link-icon">📝</div>
+                        <div class="link-name">Swagger</div>
+                    </a>
+                    <a href="https://www.figma.com/developers" target="_blank" class="link-card" data-name="Figma Dev">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Figma Dev</div>
+                    </a>
+                    <a href="https://www.gitbook.com" target="_blank" class="link-card" data-name="GitBook">
+                        <div class="link-icon">📖</div>
+                        <div class="link-name">GitBook</div>
+                    </a>
+                    <a href="https://www.notion.so" target="_blank" class="link-card" data-name="Notion">
+                        <div class="link-icon">📋</div>
+                        <div class="link-name">Notion</div>
+                    </a>
+                    <a href="https://www.typora.io" target="_blank" class="link-card" data-name="Typora">
+                        <div class="link-icon">✍️</div>
+                        <div class="link-name">Typora</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="AI工具">
+                <h2>🤖 AI工具</h2>
+                <div class="links-grid">
+                    <a href="https://chat.openai.com" target="_blank" class="link-card" data-name="ChatGPT">
+                        <div class="link-icon">💬</div>
+                        <div class="link-name">ChatGPT</div>
+                    </a>
+                    <a href="https://www.bing.com/chat" target="_blank" class="link-card" data-name="Bing Chat">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">Bing Chat</div>
+                    </a>
+                    <a href="https://www.claude.ai" target="_blank" class="link-card" data-name="Claude">
+                        <div class="link-icon">🧠</div>
+                        <div class="link-name">Claude</div>
+                    </a>
+                    <a href="https://www.midjourney.com" target="_blank" class="link-card" data-name="Midjourney">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Midjourney</div>
+                    </a>
+                    <a href="https://www.dall-e.com" target="_blank" class="link-card" data-name="DALL-E">
+                        <div class="link-icon">🖼️</div>
+                        <div class="link-name">DALL-E</div>
+                    </a>
+                    <a href="https://www.stability.ai" target="_blank" class="link-card" data-name="Stable Diffusion">
+                        <div class="link-icon">🎭</div>
+                        <div class="link-name">Stable Diffusion</div>
+                    </a>
+                    <a href="https://www.runwayml.com" target="_blank" class="link-card" data-name="Runway">
+                        <div class="link-icon">🎬</div>
+                        <div class="link-name">Runway</div>
+                    </a>
+                    <a href="https://www.perplexity.ai" target="_blank" class="link-card" data-name="Perplexity">
+                        <div class="link-icon">🔎</div>
+                        <div class="link-name">Perplexity</div>
+                    </a>
+                    <a href="https://www.cursor.sh" target="_blank" class="link-card" data-name="Cursor">
+                        <div class="link-icon">⌨️</div>
+                        <div class="link-name">Cursor</div>
+                    </a>
+                    <a href="https://www.copilot.microsoft.com" target="_blank" class="link-card" data-name="Copilot">
+                        <div class="link-icon">🤖</div>
+                        <div class="link-name">Copilot</div>
+                    </a>
+                    <a href="https://www.grammarly.com" target="_blank" class="link-card" data-name="Grammarly">
+                        <div class="link-icon">✍️</div>
+                        <div class="link-name">Grammarly</div>
+                    </a>
+                    <a href="https://www.notion.ai" target="_blank" class="link-card" data-name="Notion AI">
+                        <div class="link-icon">📝</div>
+                        <div class="link-name">Notion AI</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="区块链">
+                <h2>⛓️ 区块链</h2>
+                <div class="links-grid">
+                    <a href="https://ethereum.org" target="_blank" class="link-card" data-name="Ethereum">
+                        <div class="link-icon">Ξ</div>
+                        <div class="link-name">Ethereum</div>
+                    </a>
+                    <a href="https://bitcoin.org" target="_blank" class="link-card" data-name="Bitcoin">
+                        <div class="link-icon">₿</div>
+                        <div class="link-name">Bitcoin</div>
+                    </a>
+                    <a href="https://www.binance.com" target="_blank" class="link-card" data-name="Binance">
+                        <div class="link-icon">🔷</div>
+                        <div class="link-name">Binance</div>
+                    </a>
+                    <a href="https://coinbase.com" target="_blank" class="link-card" data-name="Coinbase">
+                        <div class="link-icon">🪙</div>
+                        <div class="link-name">Coinbase</div>
+                    </a>
+                    <a href="https://www.okx.com" target="_blank" class="link-card" data-name="OKX">
+                        <div class="link-icon">⭕</div>
+                        <div class="link-name">OKX</div>
+                    </a>
+                    <a href="https://etherscan.io" target="_blank" class="link-card" data-name="Etherscan">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">Etherscan</div>
+                    </a>
+                    <a href="https://www.blockchain.com" target="_blank" class="link-card" data-name="Blockchain">
+                        <div class="link-icon">⛓️</div>
+                        <div class="link-name">Blockchain</div>
+                    </a>
+                    <a href="https://www.metamask.io" target="_blank" class="link-card" data-name="MetaMask">
+                        <div class="link-icon">🦊</div>
+                        <div class="link-name">MetaMask</div>
+                    </a>
+                    <a href="https://uniswap.org" target="_blank" class="link-card" data-name="Uniswap">
+                        <div class="link-icon">🔄</div>
+                        <div class="link-name">Uniswap</div>
+                    </a>
+                    <a href="https://www.opensea.io" target="_blank" class="link-card" data-name="OpenSea">
+                        <div class="link-icon">🌊</div>
+                        <div class="link-name">OpenSea</div>
+                    </a>
+                    <a href="https://solana.com" target="_blank" class="link-card" data-name="Solana">
+                        <div class="link-icon">☀️</div>
+                        <div class="link-name">Solana</div>
+                    </a>
+                    <a href="https://polygon.technology" target="_blank" class="link-card" data-name="Polygon">
+                        <div class="link-icon">⬟</div>
+                        <div class="link-name">Polygon</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="学习资源">
+                <h2>📖 学习资源</h2>
+                <div class="links-grid">
+                    <a href="https://www.coursera.org" target="_blank" class="link-card" data-name="Coursera">
+                        <div class="link-icon">🎓</div>
+                        <div class="link-name">Coursera</div>
+                    </a>
+                    <a href="https://www.edx.org" target="_blank" class="link-card" data-name="edX">
+                        <div class="link-icon">📝</div>
+                        <div class="link-name">edX</div>
+                    </a>
+                    <a href="https://www.khanacademy.org" target="_blank" class="link-card" data-name="Khan Academy">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">Khan Academy</div>
+                    </a>
+                    <a href="https://www.udemy.com" target="_blank" class="link-card" data-name="Udemy">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">Udemy</div>
+                    </a>
+                    <a href="https://www.skillshare.com" target="_blank" class="link-card" data-name="Skillshare">
+                        <div class="link-icon">✏️</div>
+                        <div class="link-name">Skillshare</div>
+                    </a>
+                    <a href="https://www.codecademy.com" target="_blank" class="link-card" data-name="Codecademy">
+                        <div class="link-icon">💻</div>
+                        <div class="link-name">Codecademy</div>
+                    </a>
+                    <a href="https://www.freecodecamp.org" target="_blank" class="link-card" data-name="freeCodeCamp">
+                        <div class="link-icon">🆓</div>
+                        <div class="link-name">freeCodeCamp</div>
+                    </a>
+                    <a href="https://www.w3schools.com" target="_blank" class="link-card" data-name="W3Schools">
+                        <div class="link-icon">🌐</div>
+                        <div class="link-name">W3Schools</div>
+                    </a>
+                    <a href="https://www.imooc.com" target="_blank" class="link-card" data-name="慕课网">
+                        <div class="link-icon">🎬</div>
+                        <div class="link-name">慕课网</div>
+                    </a>
+                    <a href="https://time.geekbang.org" target="_blank" class="link-card" data-name="极客时间">
+                        <div class="link-icon">⏰</div>
+                        <div class="link-name">极客时间</div>
+                    </a>
+                    <a href="https://www.nowcoder.com" target="_blank" class="link-card" data-name="牛客网">
+                        <div class="link-icon">🐮</div>
+                        <div class="link-name">牛客网</div>
+                    </a>
+                    <a href="https://www.leetcode.cn" target="_blank" class="link-card" data-name="LeetCode">
+                        <div class="link-icon">⚡</div>
+                        <div class="link-name">LeetCode</div>
+                    </a>
+                    <a href="https://www.luogu.com.cn" target="_blank" class="link-card" data-name="洛谷">
+                        <div class="link-icon">🌲</div>
+                        <div class="link-name">洛谷</div>
+                    </a>
+                    <a href="https://www.runoob.com" target="_blank" class="link-card" data-name="菜鸟教程">
+                        <div class="link-icon">🐦</div>
+                        <div class="link-name">菜鸟教程</div>
+                    </a>
+                    <a href="https://www.ruanyifeng.com" target="_blank" class="link-card" data-name="阮一峰">
+                        <div class="link-icon">📖</div>
+                        <div class="link-name">阮一峰</div>
+                    </a>
+                    <a href="https://www.zhihu.com/xen/market" target="_blank" class="link-card" data-name="知乎盐选">
+                        <div class="link-icon">🧂</div>
+                        <div class="link-name">知乎盐选</div>
+                    </a>
+                    <a href="https://www.icourse163.org" target="_blank" class="link-card" data-name="中国大学MOOC">
+                        <div class="link-icon">🏫</div>
+                        <div class="link-name">中国大学MOOC</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="视频娱乐">
+                <h2>🎬 视频娱乐</h2>
+                <div class="links-grid">
+                    <a href="https://www.bilibili.com" target="_blank" class="link-card" data-name="B站">
+                        <div class="link-icon">📺</div>
+                        <div class="link-name">B站</div>
+                    </a>
+                    <a href="https://www.youtube.com" target="_blank" class="link-card" data-name="YouTube">
+                        <div class="link-icon">▶️</div>
+                        <div class="link-name">YouTube</div>
+                    </a>
+                    <a href="https://www.netflix.com" target="_blank" class="link-card" data-name="Netflix">
+                        <div class="link-icon">🎞️</div>
+                        <div class="link-name">Netflix</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="购物">
+                <h2>🛒 购物</h2>
+                <div class="links-grid">
+                    <a href="https://www.taobao.com" target="_blank" class="link-card" data-name="淘宝">
+                        <div class="link-icon">🛍️</div>
+                        <div class="link-name">淘宝</div>
+                    </a>
+                    <a href="https://www.jd.com" target="_blank" class="link-card" data-name="京东">
+                        <div class="link-icon">📦</div>
+                        <div class="link-name">京东</div>
+                    </a>
+                    <a href="https://www.amazon.com" target="_blank" class="link-card" data-name="Amazon">
+                        <div class="link-icon">📦</div>
+                        <div class="link-name">Amazon</div>
+                    </a>
+                    <a href="https://www.tmall.com" target="_blank" class="link-card" data-name="天猫">
+                        <div class="link-icon">🛒</div>
+                        <div class="link-name">天猫</div>
+                    </a>
+                    <a href="https://www.suning.com" target="_blank" class="link-card" data-name="苏宁易购">
+                        <div class="link-icon">☀️</div>
+                        <div class="link-name">苏宁易购</div>
+                    </a>
+                    <a href="https://www.pinduoduo.com" target="_blank" class="link-card" data-name="拼多多">
+                        <div class="link-icon">🛒</div>
+                        <div class="link-name">拼多多</div>
+                    </a>
+                    <a href="https://www.vip.com" target="_blank" class="link-card" data-name="唯品会">
+                        <div class="link-icon">💎</div>
+                        <div class="link-name">唯品会</div>
+                    </a>
+                    <a href="https://www.dangdang.com" target="_blank" class="link-card" data-name="当当">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">当当</div>
+                    </a>
+                    <a href="https://www.ebay.com" target="_blank" class="link-card" data-name="eBay">
+                        <div class="link-icon">🛒</div>
+                        <div class="link-name">eBay</div>
+                    </a>
+                    <a href="https://www.walmart.com" target="_blank" class="link-card" data-name="Walmart">
+                        <div class="link-icon">🛒</div>
+                        <div class="link-name">Walmart</div>
+                    </a>
+                    <a href="https://www.alibaba.com" target="_blank" class="link-card" data-name="Alibaba">
+                        <div class="link-icon">🏭</div>
+                        <div class="link-name">Alibaba</div>
+                    </a>
+                    <a href="https://www.meituan.com" target="_blank" class="link-card" data-name="美团">
+                        <div class="link-icon">🍔</div>
+                        <div class="link-name">美团</div>
+                    </a>
+                    <a href="https://www.ele.me" target="_blank" class="link-card" data-name="饿了么">
+                        <div class="link-icon">🍜</div>
+                        <div class="link-name">饿了么</div>
+                    </a>
+                    <a href="https://www.dianping.com" target="_blank" class="link-card" data-name="大众点评">
+                        <div class="link-icon">⭐</div>
+                        <div class="link-name">大众点评</div>
+                    </a>
+                    <a href="https://www.1688.com" target="_blank" class="link-card" data-name="1688">
+                        <div class="link-icon">🏪</div>
+                        <div class="link-name">1688</div>
+                    </a>
+                    <a href="https://www.dhgate.com" target="_blank" class="link-card" data-name="DHgate">
+                        <div class="link-icon">🌍</div>
+                        <div class="link-name">DHgate</div>
+                    </a>
+                    <a href="https://www.sephora.com" target="_blank" class="link-card" data-name="Sephora">
+                        <div class="link-icon">💄</div>
+                        <div class="link-name">Sephora</div>
+                    </a>
+                    <a href="https://www.iherb.com" target="_blank" class="link-card" data-name="iHerb">
+                        <div class="link-icon">🌿</div>
+                        <div class="link-name">iHerb</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="网盘云储">
+                <h2>☁️ 网盘云储</h2>
+                <div class="links-grid">
+                    <a href="https://pan.baidu.com" target="_blank" class="link-card" data-name="百度网盘">
+                        <div class="link-icon">💾</div>
+                        <div class="link-name">百度网盘</div>
+                    </a>
+                    <a href="https://cloud.189.cn" target="_blank" class="link-card" data-name="天翼云盘">
+                        <div class="link-icon">☁️</div>
+                        <div class="link-name">天翼云盘</div>
+                    </a>
+                    <a href="https://www.aliyundrive.com" target="_blank" class="link-card" data-name="阿里云盘">
+                        <div class="link-icon">📁</div>
+                        <div class="link-name">阿里云盘</div>
+                    </a>
+                    <a href="https://www.weiyun.com" target="_blank" class="link-card" data-name="腾讯微云">
+                        <div class="link-icon">💿</div>
+                        <div class="link-name">腾讯微云</div>
+                    </a>
+                    <a href="https://onedrive.live.com" target="_blank" class="link-card" data-name="OneDrive">
+                        <div class="link-icon">📂</div>
+                        <div class="link-name">OneDrive</div>
+                    </a>
+                    <a href="https://drive.google.com" target="_blank" class="link-card" data-name="Google Drive">
+                        <div class="link-icon">🗂️</div>
+                        <div class="link-name">Google Drive</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="设计工具">
+                <h2>🎨 设计工具</h2>
+                <div class="links-grid">
+                    <a href="https://color.adobe.com" target="_blank" class="link-card" data-name="Adobe Color">
+                        <div class="link-icon">🌈</div>
+                        <div class="link-name">Adobe Color</div>
+                    </a>
+                    <a href="https://www.flatuicolors.com" target="_blank" class="link-card" data-name="Flat UI Colors">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Flat UI Colors</div>
+                    </a>
+                    <a href="https://coolors.co" target="_blank" class="link-card" data-name="Coolors">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">Coolors</div>
+                    </a>
+                    <a href="https://www.figma.com" target="_blank" class="link-card" data-name="Figma">
+                        <div class="link-icon">✏️</div>
+                        <div class="link-name">Figma</div>
+                    </a>
+                    <a href="https://undraw.co" target="_blank" class="link-card" data-name="unDraw">
+                        <div class="link-icon">🖼️</div>
+                        <div class="link-name">unDraw</div>
+                    </a>
+                    <a href="https://www.canva.com" target="_blank" class="link-card" data-name="Canva">
+                        <div class="link-icon">🖌️</div>
+                        <div class="link-name">Canva</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="素材资源">
+                <h2>📚 素材资源</h2>
+                <div class="links-grid">
+                    <a href="https://www.qiantu.cn" target="_blank" class="link-card" data-name="千图网">
+                        <div class="link-icon">🖼️</div>
+                        <div class="link-name">千图网</div>
+                    </a>
+                    <a href="https://www.lanrentuku.com" target="_blank" class="link-card" data-name="懒人图库">
+                        <div class="link-icon">📸</div>
+                        <div class="link-name">懒人图库</div>
+                    </a>
+                    <a href="https://www.iconfont.cn" target="_blank" class="link-card" data-name="Iconfont">
+                        <div class="link-icon">🔲</div>
+                        <div class="link-name">Iconfont</div>
+                    </a>
+                    <a href="https://www.flaticon.com" target="_blank" class="link-card" data-name="Flaticon">
+                        <div class="link-icon">🔳</div>
+                        <div class="link-name">Flaticon</div>
+                    </a>
+                    <a href="https://unsplash.com" target="_blank" class="link-card" data-name="Unsplash">
+                        <div class="link-icon">📷</div>
+                        <div class="link-name">Unsplash</div>
+                    </a>
+                    <a href="https://www.pexels.com" target="_blank" class="link-card" data-name="Pexels">
+                        <div class="link-icon">📹</div>
+                        <div class="link-name">Pexels</div>
+                    </a>
+                    <a href="https://www.ui.cn" target="_blank" class="link-card" data-name="UI中国">
+                        <div class="link-icon">🎭</div>
+                        <div class="link-name">UI中国</div>
+                    </a>
+                    <a href="https://www.zcool.com.cn" target="_blank" class="link-card" data-name="站酷">
+                        <div class="link-icon">✨</div>
+                        <div class="link-name">站酷</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="在线工具">
+                <h2>🛠️ 在线工具</h2>
+                <div class="links-grid">
+                    <a href="https://www.remove.bg" target="_blank" class="link-card" data-name="Remove.bg">
+                        <div class="link-icon">✂️</div>
+                        <div class="link-name">Remove.bg</div>
+                    </a>
+                    <a href="https://www.tinyPNG.com" target="_blank" class="link-card" data-name="TinyPNG">
+                        <div class="link-icon">🗜️</div>
+                        <div class="link-name">TinyPNG</div>
+                    </a>
+                    <a href="https://www.processon.com" target="_blank" class="link-card" data-name="ProcessOn">
+                        <div class="link-icon">📊</div>
+                        <div class="link-name">ProcessOn</div>
+                    </a>
+                    <a href="https://carbon.now.sh" target="_blank" class="link-card" data-name="Carbon">
+                        <div class="link-icon">💻</div>
+                        <div class="link-name">Carbon</div>
+                    </a>
+                    <a href="https://regex101.com" target="_blank" class="link-card" data-name="Regex101">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">Regex101</div>
+                    </a>
+                    <a href="https://www.json.cn" target="_blank" class="link-card" data-name="JSON格式化">
+                        <div class="link-icon">📋</div>
+                        <div class="link-name">JSON格式化</div>
+                    </a>
+                    <a href="https://tool.lu" target="_blank" class="link-card" data-name="在线工具">
+                        <div class="link-icon">🔧</div>
+                        <div class="link-name">在线工具</div>
+                    </a>
+                    <a href="https://www.bejson.com" target="_blank" class="link-card" data-name="BeJSON">
+                        <div class="link-icon">📝</div>
+                        <div class="link-name">BeJSON</div>
+                    </a>
+                    <a href="https://www.draw.io" target="_blank" class="link-card" data-name="draw.io">
+                        <div class="link-icon">📐</div>
+                        <div class="link-name">draw.io</div>
+                    </a>
+                    <a href="https://www.figma.com" target="_blank" class="link-card" data-name="Figma">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Figma</div>
+                    </a>
+                    <a href="https://www.miro.com" target="_blank" class="link-card" data-name="Miro">
+                        <div class="link-icon">🖼️</div>
+                        <div class="link-name">Miro</div>
+                    </a>
+                    <a href="https://www.excalidraw.com" target="_blank" class="link-card" data-name="Excalidraw">
+                        <div class="link-icon">✏️</div>
+                        <div class="link-name">Excalidraw</div>
+                    </a>
+                    <a href="https://www.cloudconvert.com" target="_blank" class="link-card" data-name="CloudConvert">
+                        <div class="link-icon">☁️</div>
+                        <div class="link-name">CloudConvert</div>
+                    </a>
+                    <a href="https://www.zapier.com" target="_blank" class="link-card" data-name="Zapier">
+                        <div class="link-icon">⚡</div>
+                        <div class="link-name">Zapier</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="社区资讯">
+                <h2>💬 社区资讯</h2>
+                <div class="links-grid">
+                    <a href="https://www.v2ex.com" target="_blank" class="link-card" data-name="V2EX">
+                        <div class="link-icon">💡</div>
+                        <div class="link-name">V2EX</div>
+                    </a>
+                    <a href="https://www.ithome.com" target="_blank" class="link-card" data-name="IT之家">
+                        <div class="link-icon">📱</div>
+                        <div class="link-name">IT之家</div>
+                    </a>
+                    <a href="https://www.36kr.com" target="_blank" class="link-card" data-name="36氪">
+                        <div class="link-icon">🚀</div>
+                        <div class="link-name">36氪</div>
+                    </a>
+                    <a href="https://www.huxiu.com" target="_blank" class="link-card" data-name="虎嗅">
+                        <div class="link-icon">🐅</div>
+                        <div class="link-name">虎嗅</div>
+                    </a>
+                    <a href="https://www.jianshu.com" target="_blank" class="link-card" data-name="简书">
+                        <div class="link-icon">📖</div>
+                        <div class="link-name">简书</div>
+                    </a>
+                    <a href="https://www.csdn.net" target="_blank" class="link-card" data-name="CSDN">
+                        <div class="link-icon">💻</div>
+                        <div class="link-name">CSDN</div>
+                    </a>
+                    <a href="https://www.juejin.cn" target="_blank" class="link-card" data-name="掘金">
+                        <div class="link-icon">⛏️</div>
+                        <div class="link-name">掘金</div>
+                    </a>
+                    <a href="https://segmentfault.com" target="_blank" class="link-card" data-name="思否">
+                        <div class="link-icon">❓</div>
+                        <div class="link-name">思否</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="书籍期刊">
+                <h2>📕 书籍期刊</h2>
+                <div class="links-grid">
+                    <a href="https://www.zlibrary.org" target="_blank" class="link-card" data-name="Z-Library">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">Z-Library</div>
+                    </a>
+                    <a href="https://www.booksc.org" target="_blank" class="link-card" data-name="BookSC">
+                        <div class="link-icon">📖</div>
+                        <div class="link-name">BookSC</div>
+                    </a>
+                    <a href="https://www.librarygenesis.net" target="_blank" class="link-card" data-name="Library Genesis">
+                        <div class="link-icon">📗</div>
+                        <div class="link-name">Library Genesis</div>
+                    </a>
+                    <a href="https://www.douban.com" target="_blank" class="link-card" data-name="豆瓣读书">
+                        <div class="link-icon">📘</div>
+                        <div class="link-name">豆瓣读书</div>
+                    </a>
+                    <a href="https://www.dangdang.com" target="_blank" class="link-card" data-name="当当">
+                        <div class="link-icon">📕</div>
+                        <div class="link-name">当当</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="求职招聘">
+                <h2>💼 求职招聘</h2>
+                <div class="links-grid">
+                    <a href="https://www.zhaopin.com" target="_blank" class="link-card" data-name="智联招聘">
+                        <div class="link-icon">💼</div>
+                        <div class="link-name">智联招聘</div>
+                    </a>
+                    <a href="https://www.51job.com" target="_blank" class="link-card" data-name="前程无忧">
+                        <div class="link-icon">📋</div>
+                        <div class="link-name">前程无忧</div>
+                    </a>
+                    <a href="https://www.lagou.com" target="_blank" class="link-card" data-name="拉勾网">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">拉勾网</div>
+                    </a>
+                    <a href="https://www.liepin.com" target="_blank" class="link-card" data-name="猎聘">
+                        <div class="link-icon">🎖️</div>
+                        <div class="link-name">猎聘</div>
+                    </a>
+                    <a href="https://www.zhipin.com" target="_blank" class="link-card" data-name="BOSS直聘">
+                        <div class="link-icon">👔</div>
+                        <div class="link-name">BOSS直聘</div>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="link-card" data-name="LinkedIn">
+                        <div class="link-icon">💼</div>
+                        <div class="link-name">LinkedIn</div>
+                    </a>
+                    <a href="https://www.indeed.com" target="_blank" class="link-card" data-name="Indeed">
+                        <div class="link-icon">🔍</div>
+                        <div class="link-name">Indeed</div>
+                    </a>
+                    <a href="https://www.glassdoor.com" target="_blank" class="link-card" data-name="Glassdoor">
+                        <div class="link-icon">🚪</div>
+                        <div class="link-name">Glassdoor</div>
+                    </a>
+                    <a href="https://www.monster.com" target="_blank" class="link-card" data-name="Monster">
+                        <div class="link-icon">👹</div>
+                        <div class="link-name">Monster</div>
+                    </a>
+                    <a href="https://www.58.com" target="_blank" class="link-card" data-name="58同城">
+                        <div class="link-icon">🏢</div>
+                        <div class="link-name">58同城</div>
+                    </a>
+                    <a href="https://www.ganji.com" target="_blank" class="link-card" data-name="赶集网">
+                        <div class="link-icon">🚶</div>
+                        <div class="link-name">赶集网</div>
+                    </a>
+                    <a href="https://www.shixiseng.com" target="_blank" class="link-card" data-name="实习僧">
+                        <div class="link-icon">🎓</div>
+                        <div class="link-name">实习僧</div>
+                    </a>
+                    <a href="https://www.dajie.com" target="_blank" class="link-card" data-name="大街网">
+                        <div class="link-icon">🌉</div>
+                        <div class="link-name">大街网</div>
+                    </a>
+                    <a href="https://www.500d.me" target="_blank" class="link-card" data-name="五百丁简历">
+                        <div class="link-icon">📄</div>
+                        <div class="link-name">五百丁简历</div>
+                    </a>
+                    <a href="https://www.jobui.com" target="_blank" class="link-card" data-name="看准网">
+                        <div class="link-icon">👁️</div>
+                        <div class="link-name">看准网</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="生活服务">
+                <h2>🏠 生活服务</h2>
+                <div class="links-grid">
+                    <a href="https://www.xiachufang.com" target="_blank" class="link-card" data-name="下厨房">
+                        <div class="link-icon">👨‍🍳</div>
+                        <div class="link-name">下厨房</div>
+                    </a>
+                    <a href="https://www.12306.cn" target="_blank" class="link-card" data-name="12306">
+                        <div class="link-icon">🚄</div>
+                        <div class="link-name">12306</div>
+                    </a>
+                    <a href="https://www.kuaidi100.com" target="_blank" class="link-card" data-name="快递100">
+                        <div class="link-icon">📦</div>
+                        <div class="link-name">快递100</div>
+                    </a>
+                    <a href="https://www.qunar.com" target="_blank" class="link-card" data-name="去哪儿">
+                        <div class="link-icon">✈️</div>
+                        <div class="link-name">去哪儿</div>
+                    </a>
+                    <a href="https://www.ctrip.com" target="_blank" class="link-card" data-name="携程">
+                        <div class="link-icon">🏨</div>
+                        <div class="link-name">携程</div>
+                    </a>
+                    <a href="https://www.meituan.com" target="_blank" class="link-card" data-name="美团">
+                        <div class="link-icon">🍔</div>
+                        <div class="link-name">美团</div>
+                    </a>
+                    <a href="https://www.dianping.com" target="_blank" class="link-card" data-name="大众点评">
+                        <div class="link-icon">⭐</div>
+                        <div class="link-name">大众点评</div>
+                    </a>
+                    <a href="https://www.ele.me" target="_blank" class="link-card" data-name="饿了么">
+                        <div class="link-icon">🍜</div>
+                        <div class="link-name">饿了么</div>
+                    </a>
+                    <a href="https://www.uber.com" target="_blank" class="link-card" data-name="Uber">
+                        <div class="link-icon">🚗</div>
+                        <div class="link-name">Uber</div>
+                    </a>
+                    <a href="https://www.didiglobal.com" target="_blank" class="link-card" data-name="滴滴">
+                        <div class="link-icon">🚕</div>
+                        <div class="link-name">滴滴</div>
+                    </a>
+                    <a href="https://www.airbnb.com" target="_blank" class="link-card" data-name="Airbnb">
+                        <div class="link-icon">🏡</div>
+                        <div class="link-name">Airbnb</div>
+                    </a>
+                    <a href="https://www.booking.com" target="_blank" class="link-card" data-name="Booking">
+                        <div class="link-icon">📅</div>
+                        <div class="link-name">Booking</div>
+                    </a>
+                    <a href="https://www.trip.com" target="_blank" class="link-card" data-name="Trip.com">
+                        <div class="link-icon">✈️</div>
+                        <div class="link-name">Trip.com</div>
+                    </a>
+                    <a href="https://www.fliggy.com" target="_blank" class="link-card" data-name="飞猪">
+                        <div class="link-icon">🐷</div>
+                        <div class="link-name">飞猪</div>
+                    </a>
+                    <a href="https://www.maoyan.com" target="_blank" class="link-card" data-name="猫眼">
+                        <div class="link-icon">🎬</div>
+                        <div class="link-name">猫眼</div>
+                    </a>
+                    <a href="https://www.damai.cn" target="_blank" class="link-card" data-name="大麦网">
+                        <div class="link-icon">🎫</div>
+                        <div class="link-name">大麦网</div>
+                    </a>
+                    <a href="https://www.58.com" target="_blank" class="link-card" data-name="58同城">
+                        <div class="link-icon">🏢</div>
+                        <div class="link-name">58同城</div>
+                    </a>
+                    <a href="https://www.ganji.com" target="_blank" class="link-card" data-name="赶集网">
+                        <div class="link-icon">🚶</div>
+                        <div class="link-name">赶集网</div>
+                    </a>
+                    <a href="https://www.huaban.com" target="_blank" class="link-card" data-name="花瓣">
+                        <div class="link-icon">🌸</div>
+                        <div class="link-name">花瓣</div>
+                    </a>
+                    <a href="https://www.xiaomi.com" target="_blank" class="link-card" data-name="小米">
+                        <div class="link-icon">📱</div>
+                        <div class="link-name">小米</div>
+                    </a>
+                    <a href="https://www.taobao.com/markets/huabei/markets" target="_blank" class="link-card" data-name="淘票票">
+                        <div class="link-icon">🎟️</div>
+                        <div class="link-name">淘票票</div>
+                    </a>
+                    <a href="https://www.weather.com" target="_blank" class="link-card" data-name="天气">
+                        <div class="link-icon">🌤️</div>
+                        <div class="link-name">天气</div>
+                    </a>
+                    <a href="https://www.map.baidu.com" target="_blank" class="link-card" data-name="百度地图">
+                        <div class="link-icon">🗺️</div>
+                        <div class="link-name">百度地图</div>
+                    </a>
+                    <a href="https://www.amap.com" target="_blank" class="link-card" data-name="高德地图">
+                        <div class="link-icon">📍</div>
+                        <div class="link-name">高德地图</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="小游戏">
+                <h2>🎮 小游戏</h2>
+                <div class="links-grid">
+                    <a href="https://www.4399.com" target="_blank" class="link-card" data-name="4399">
+                        <div class="link-icon">🎮</div>
+                        <div class="link-name">4399</div>
+                    </a>
+                    <a href="https://www.7k7k.com" target="_blank" class="link-card" data-name="7K7K">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">7K7K</div>
+                    </a>
+                    <a href="https://www.2144.cn" target="_blank" class="link-card" data-name="2144">
+                        <div class="link-icon">🕹️</div>
+                        <div class="link-name">2144</div>
+                    </a>
+                    <a href="https://www.3366.com" target="_blank" class="link-card" data-name="3366">
+                        <div class="link-icon">🎲</div>
+                        <div class="link-name">3366</div>
+                    </a>
+                    <a href="https://www.poki.com" target="_blank" class="link-card" data-name="Poki">
+                        <div class="link-icon">🎪</div>
+                        <div class="link-name">Poki</div>
+                    </a>
+                    <a href="https://www.crazygames.com" target="_blank" class="link-card" data-name="CrazyGames">
+                        <div class="link-icon">🎭</div>
+                        <div class="link-name">CrazyGames</div>
+                    </a>
+                    <a href="https://www.kongregate.com" target="_blank" class="link-card" data-name="Kongregate">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Kongregate</div>
+                    </a>
+                    <a href="https://itch.io" target="_blank" class="link-card" data-name="itch.io">
+                        <div class="link-icon">🎬</div>
+                        <div class="link-name">itch.io</div>
+                    </a>
+                    <a href="https://www.miniclip.com" target="_blank" class="link-card" data-name="Miniclip">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-name">Miniclip</div>
+                    </a>
+                    <a href="https://www.coolmathgames.com" target="_blank" class="link-card" data-name="CoolMath">
+                        <div class="link-icon">🧮</div>
+                        <div class="link-name">CoolMath</div>
+                    </a>
+                    <a href="https://www.addictinggames.com" target="_blank" class="link-card" data-name="AddictingGames">
+                        <div class="link-icon">🎰</div>
+                        <div class="link-name">AddictingGames</div>
+                    </a>
+                    <a href="https://www.y8.com" target="_blank" class="link-card" data-name="Y8">
+                        <div class="link-icon">🎪</div>
+                        <div class="link-name">Y8</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category" data-category="笔记软件">
+                <h2>📝 笔记软件</h2>
+                <div class="links-grid">
+                    <a href="https://www.notion.so" target="_blank" class="link-card" data-name="Notion">
+                        <div class="link-icon">📔</div>
+                        <div class="link-name">Notion</div>
+                    </a>
+                    <a href="https://www.yinxiang.com" target="_blank" class="link-card" data-name="印象笔记">
+                        <div class="link-icon">🐘</div>
+                        <div class="link-name">印象笔记</div>
+                    </a>
+                    <a href="https://www.onenote.com" target="_blank" class="link-card" data-name="OneNote">
+                        <div class="link-icon">📓</div>
+                        <div class="link-name">OneNote</div>
+                    </a>
+                    <a href="https://note.youdao.com" target="_blank" class="link-card" data-name="有道云笔记">
+                        <div class="link-icon">📄</div>
+                        <div class="link-name">有道云笔记</div>
+                    </a>
+                    <a href="https://www.yuque.com" target="_blank" class="link-card" data-name="语雀">
+                        <div class="link-icon">🪶</div>
+                        <div class="link-name">语雀</div>
+                    </a>
+                    <a href="https://docs.qq.com" target="_blank" class="link-card" data-name="腾讯文档">
+                        <div class="link-icon">📊</div>
+                        <div class="link-name">腾讯文档</div>
+                    </a>
+                    <a href="https://keep.google.com" target="_blank" class="link-card" data-name="Google Keep">
+                        <div class="link-icon">🗒️</div>
+                        <div class="link-name">Google Keep</div>
+                    </a>
+                    <a href="https://obsidian.md" target="_blank" class="link-card" data-name="Obsidian">
+                        <div class="link-icon">💎</div>
+                        <div class="link-name">Obsidian</div>
+                    </a>
+                    <a href="https://joplinapp.org" target="_blank" class="link-card" data-name="Joplin">
+                        <div class="link-icon">📋</div>
+                        <div class="link-name">Joplin</div>
+                    </a>
+                    <a href="https://www.wolai.com" target="_blank" class="link-card" data-name="我来">
+                        <div class="link-icon">🌐</div>
+                        <div class="link-name">我来</div>
+                    </a>
+                    <a href="https://www.figma.com" target="_blank" class="link-card" data-name="Figma">
+                        <div class="link-icon">🎨</div>
+                        <div class="link-name">Figma</div>
+                    </a>
+                    <a href="https://www.roamresearch.com" target="_blank" class="link-card" data-name="Roam Research">
+                        <div class="link-icon">🧠</div>
+                        <div class="link-name">Roam Research</div>
+                    </a>
+                    <a href="https://www.logseq.com" target="_blank" class="link-card" data-name="Logseq">
+                        <div class="link-icon">📚</div>
+                        <div class="link-name">Logseq</div>
+                    </a>
+                    <a href="https://www.flowus.cn" target="_blank" class="link-card" data-name="FlowUs">
+                        <div class="link-icon">🌊</div>
+                        <div class="link-name">FlowUs</div>
+                    </a>
+                    <a href="https://www.craft.do" target="_blank" class="link-card" data-name="Craft">
+                        <div class="link-icon">✨</div>
+                        <div class="link-name">Craft</div>
+                    </a>
+                    <a href="https://www.bear.app" target="_blank" class="link-card" data-name="Bear">
+                        <div class="link-icon">🐻</div>
+                        <div class="link-name">Bear</div>
+                    </a>
+                    <a href="https://www.markdown.xyz" target="_blank" class="link-card" data-name="Markdown">
+                        <div class="link-icon">📝</div>
+                        <div class="link-name">Markdown</div>
+                    </a>
+                    <a href="https://www.zoho.com/notebook" target="_blank" class="link-card" data-name="Zoho Notebook">
+                        <div class="link-icon">📗</div>
+                        <div class="link-name">Zoho Notebook</div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        </div>
+
+        <footer>
+            <p>© 2025 导航网站 | 快速访问您喜爱的网站</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

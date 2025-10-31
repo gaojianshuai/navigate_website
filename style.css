@@ -1,0 +1,1459 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background-image 0.5s ease;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+    z-index: -1;
+}
+
+#dynamicBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#dynamicBackground.loaded {
+    opacity: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-wrapper {
+    display: block;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    padding: 30px 0;
+}
+
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 140px;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(15deg);
+}
+
+.theme-text {
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .theme-toggle {
+        min-width: auto;
+        padding: 8px 16px;
+    }
+    
+    .theme-text {
+        display: none;
+    }
+    
+    /* 移动端热搜区域响应式 */
+    .hot-search-wrapper {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .hot-search-container {
+        padding: 20px;
+    }
+    
+    .hot-search-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+.search-box {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.search-engine-selector {
+    position: relative;
+}
+
+.engine-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50px 0 0 50px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.engine-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.engine-btn .arrow {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    transition: transform 0.3s ease;
+}
+
+.engine-btn.active .arrow {
+    transform: rotate(180deg);
+}
+
+.engine-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    min-width: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    padding: 8px 0;
+}
+
+.engine-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.engine-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.engine-option:hover {
+    background: #f5f7fa;
+}
+
+.engine-option.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.option-icon {
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+}
+
+.option-text {
+    font-size: 0.95rem;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-btn {
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+/* 热搜区域样式 */
+.hot-search-section {
+    margin-bottom: 40px;
+}
+
+
+
+
+
+.hot-search-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.hot-search-container {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hot-search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.hot-search-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* 微博热搜标题颜色 */
+.hot-search-container:first-child .hot-search-header h2 {
+    color: #e1306c;
+}
+
+/* 百度热搜标题颜色 */
+.hot-search-container:last-child .hot-search-header h2 {
+    color: #3385ff;
+}
+
+.hot-update-time {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.hot-search-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.hot-search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.hot-search-item:last-child {
+    border-bottom: none;
+}
+
+.hot-search-item:hover {
+    color: #667eea;
+    padding-left: 5px;
+}
+
+/* 微博热搜项样式 */
+.hot-search-container:first-child .hot-search-item:hover {
+    color: #e1306c;
+}
+
+/* 百度热搜项样式 */
+.hot-search-container:last-child .hot-search-item:hover {
+    color: #3385ff;
+}
+
+.hot-rank {
+    font-weight: 700;
+    min-width: 28px;
+    text-align: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* 微博排名颜色 */
+.hot-search-container:first-child .hot-rank {
+    color: #e1306c;
+}
+
+/* 百度排名颜色 */
+.hot-search-container:last-child .hot-rank {
+    color: #3385ff;
+}
+
+.hot-search-item:hover .hot-rank {
+    opacity: 0.8;
+}
+
+.hot-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.hot-tag {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* 微博热门标签 */
+.hot-search-container:first-child .hot-tag {
+    background: #ffeef3;
+    color: #e1306c;
+}
+
+/* 百度热门标签 */
+.hot-search-container:last-child .hot-tag {
+    background: #e6f2ff;
+    color: #3385ff;
+}
+
+.hot-loading {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1rem;
+}
+
+.hot-error {
+    text-align: center;
+    padding: 40px;
+    color: #ff6b6b;
+    font-size: 1rem;
+}
+
+/* 微博热搜区域样式（保留向后兼容） */
+.weibo-hot-section {
+    margin-bottom: 40px;
+}
+
+.weibo-hot-container {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.weibo-hot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.weibo-hot-header h2 {
+    font-size: 1.6rem;
+    color: #e1306c;
+    margin: 0;
+    font-weight: 600;
+}
+
+.weibo-update-time {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.weibo-hot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.weibo-hot-item {
+    background: linear-gradient(135deg, #fff5f8 0%, #ffeef3 100%);
+    border-left: 4px solid #e1306c;
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+.weibo-hot-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(225, 48, 108, 0.15);
+    background: linear-gradient(135deg, #e1306c 0%, #ff6b9d 100%);
+    color: white;
+}
+
+.weibo-rank {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #e1306c;
+    min-width: 30px;
+    text-align: center;
+}
+
+.weibo-hot-item:hover .weibo-rank {
+    color: white;
+}
+
+.weibo-title {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.weibo-hot {
+    background: #ff4757;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.weibo-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    color: #e1306c;
+    font-size: 1rem;
+}
+
+.weibo-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    color: #e74c3c;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .weibo-hot-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .weibo-hot-container {
+        padding: 20px;
+    }
+    
+    .weibo-hot-header h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* 新闻区域样式 */
+.news-section {
+    margin-bottom: 40px;
+}
+
+.news-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.news-header h2 {
+    font-size: 1.8rem;
+    color: #667eea;
+    margin: 0;
+}
+
+.refresh-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.refresh-btn:hover {
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-btn span {
+    font-size: 1.2rem;
+}
+
+.refresh-btn.loading {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.news-source-section {
+    margin-bottom: 30px;
+}
+
+.news-source-section:last-child {
+    margin-bottom: 0;
+}
+
+.news-source-title {
+    font-size: 1.4rem;
+    color: #667eea;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    font-weight: 600;
+}
+
+.news-source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.news-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    min-height: 150px;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.news-card .news-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-card .news-source {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.news-card:hover .news-source {
+    opacity: 0.9;
+}
+
+.news-card .news-time {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 10px;
+}
+
+.news-card:hover .news-time {
+    opacity: 0.8;
+}
+
+.news-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.news-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #e74c3c;
+    font-size: 1.1rem;
+}
+
+.news-error button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.news-error button:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-container {
+        padding: 20px;
+    }
+    
+    .news-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+main {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+
+.category {
+    margin-bottom: 50px;
+}
+
+.category:last-child {
+    margin-bottom: 0;
+}
+
+.category h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #667eea;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    min-height: 120px;
+}
+
+.link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.link-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.link-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.link-card:hover .link-icon {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.link-name {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.category.hidden {
+    display: none;
+}
+
+.link-card.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    .links-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+    }
+    
+    .link-card {
+        min-height: 100px;
+        padding: 20px 10px;
+    }
+    
+    .link-icon {
+        font-size: 2rem;
+    }
+}
+
+/* 宠物猫样式 */
+.pet-cat {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 80px;
+    height: 80px;
+    cursor: grab;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    user-select: none;
+}
+
+.pet-cat:active {
+    cursor: grabbing;
+}
+
+.pet-cat.dragging {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.cat-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: catFloat 3s ease-in-out infinite;
+}
+
+@keyframes catFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+}
+
+.cat-head {
+    position: absolute;
+    width: 50px;
+    height: 45px;
+    background: #ffa500;
+    border-radius: 50% 50% 45% 45%;
+    top: 0;
+    left: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cat-ear {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 15px solid #ff8c00;
+    top: -10px;
+    animation: earWiggle 2s ease-in-out infinite;
+}
+
+.left-ear {
+    left: 8px;
+    transform: rotate(-20deg);
+    animation-delay: 0s;
+}
+
+.right-ear {
+    right: 8px;
+    transform: rotate(20deg);
+    animation-delay: 0.5s;
+}
+
+@keyframes earWiggle {
+    0%, 100% {
+        transform: rotate(var(--ear-rotation, 0deg));
+    }
+    50% {
+        transform: rotate(calc(var(--ear-rotation, 0deg) + 10deg));
+    }
+}
+
+.left-ear {
+    --ear-rotation: -20deg;
+}
+
+.right-ear {
+    --ear-rotation: 20deg;
+}
+
+.cat-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.cat-eye {
+    position: absolute;
+    width: 8px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    top: 15px;
+    animation: blink 4s infinite;
+}
+
+.left-eye {
+    left: 12px;
+}
+
+.right-eye {
+    right: 12px;
+}
+
+@keyframes blink {
+    0%, 90%, 100% {
+        height: 10px;
+    }
+    92%, 94% {
+        height: 2px;
+    }
+}
+
+.cat-pupil {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+}
+
+.cat-nose {
+    position: absolute;
+    width: 6px;
+    height: 5px;
+    background: #ff69b4;
+    border-radius: 0 0 50% 50%;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cat-mouth {
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    border-left: 2px solid #ff69b4;
+    border-bottom: 2px solid #ff69b4;
+    border-radius: 0 0 0 8px;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cat-tail {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background: #ffa500;
+    border-radius: 4px;
+    bottom: -5px;
+    right: 5px;
+    transform-origin: top center;
+    animation: tailWag 1.5s ease-in-out infinite;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes tailWag {
+    0%, 100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+/* 鼠标悬停效果 */
+.pet-cat:hover .cat-body {
+    animation: catExcited 0.5s ease-in-out;
+}
+
+@keyframes catExcited {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15) rotate(5deg);
+    }
+}
+
+.pet-cat:hover .cat-tail {
+    animation: tailWagFast 0.3s ease-in-out infinite;
+}
+
+@keyframes tailWagFast {
+    0%, 100% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(25deg);
+    }
+}
+
+/* 暗黑模式样式 */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode::before {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+}
+
+body.dark-mode main,
+body.dark-mode .weibo-hot-container {
+    background: #1e1e2e;
+    color: #e0e0e0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .category h2 {
+    color: #8b8bff;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .link-card {
+    background: linear-gradient(135deg, #2d2d3f 0%, #3a3a4f 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .link-card:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-mode .link-icon {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #searchInput,
+body.dark-mode .engine-btn {
+    background: rgba(45, 45, 63, 0.95);
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #searchInput:focus,
+body.dark-mode .engine-btn:hover {
+    background: rgba(45, 45, 63, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .engine-menu {
+    background: #2d2d3f;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .engine-option {
+    color: #e0e0e0;
+}
+
+body.dark-mode .engine-option:hover {
+    background: #3a3a4f;
+}
+
+body.dark-mode .engine-option.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-mode .weibo-hot-header h2,
+body.dark-mode .category h2 {
+    color: #8b8bff;
+}
+
+body.dark-mode .weibo-hot-item {
+    background: linear-gradient(135deg, #2d2d3f 0%, #3a3a4f 100%);
+    border-left-color: #8b8bff;
+    color: #e0e0e0;
+}
+
+body.dark-mode .weibo-hot-item:hover {
+    background: linear-gradient(135deg, #8b8bff 0%, #a8a8ff 100%);
+    color: white;
+}
+
+body.dark-mode .weibo-rank {
+    color: #8b8bff;
+}
+
+body.dark-mode .weibo-hot-item:hover .weibo-rank {
+    color: white;
+}
+
+body.dark-mode .news-card {
+    background: linear-gradient(135deg, #2d2d3f 0%, #3a3a4f 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .news-card:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-mode .news-source-title {
+    color: #8b8bff;
+    border-bottom-color: #333;
+}
+
+
+body.dark-mode .refresh-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body.dark-mode .refresh-btn:hover {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+body.dark-mode .news-loading,
+body.dark-mode .hot-loading {
+    color: #8b8bff;
+}
+
+body.dark-mode .news-error,
+body.dark-mode .hot-error {
+    color: #ff6b6b;
+}
+
+body.dark-mode .hot-search-container {
+    background: #1e1e2e;
+    color: #e0e0e0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .hot-search-header {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .hot-search-item {
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .hot-search-container:first-child .hot-search-item:hover {
+    color: #ff6b9d;
+}
+
+body.dark-mode .hot-search-container:last-child .hot-search-item:hover {
+    color: #5a9cff;
+}
+
+body.dark-mode .hot-search-container:first-child .hot-tag {
+    background: rgba(225, 48, 108, 0.2);
+    color: #ff6b9d;
+}
+
+body.dark-mode .hot-search-container:last-child .hot-tag {
+    background: rgba(51, 133, 255, 0.2);
+    color: #5a9cff;
+}
+
+body.dark-mode footer {
+    color: #b0b0b0;
+}
+
+body.dark-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 音乐播放器样式 */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 320px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.music-player.minimized {
+    height: 60px;
+    width: 280px;
+}
+
+.music-player.minimized .music-player-body {
+    display: none;
+}
+
+.music-player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: move;
+}
+
+.music-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.music-icon {
+    font-size: 1.2rem;
+}
+
+.music-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.music-toggle,
+.music-minimize {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.music-toggle:hover,
+.music-minimize:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.music-player-body {
+    background: #f8f9fa;
+    padding: 0;
+    overflow: hidden;
+}
+
+.music-player iframe {
+    display: block;
+    border: none;
+}
+
+/* MetingJS APlayer样式覆盖 */
+.music-player-body .aplayer {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.music-player-body .aplayer-info {
+    display: none; /* 隐藏播放器自带的控制栏，我们使用自定义的 */
+}
+
+.music-player-body .aplayer-body {
+    margin: 0;
+}
+
+.music-player-body .aplayer-list {
+    display: none; /* 可选：隐藏播放列表 */
+}
+
+.music-float-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-float-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.music-float-btn.show {
+    display: flex;
+}
+
+.music-player.hidden {
+    display: none;
+}
+
+/* 暗黑模式下的音乐播放器 */
+body.dark-mode .music-player {
+    background: #1e1e2e;
+}
+
+body.dark-mode .music-player-body {
+    background: #2d2d3f;
+}
+
+body.dark-mode .music-toggle,
+body.dark-mode .music-minimize {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .music-toggle:hover,
+body.dark-mode .music-minimize:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+    .music-player {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        bottom: 80px;
+    }
+    
+    .music-float-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+}
+
